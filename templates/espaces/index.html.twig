@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EspacesController!{% endblock %}
+{% block title %}Gestion des espaces en BDD{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/symfony/SymfonyGroupe/src/Controller/EspacesController.php'|file_link(0) }}">src/Controller/EspacesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/symfony/SymfonyGroupe/templates/espaces/index.html.twig'|file_link(0) }}">templates/espaces/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1>Gestion des espaces en BDD</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Superficie</th>
+            <th></th>
+        </tr>
+        {% for e in espaces %}
+            <tr>
+                <td>{{ e.nom }}</td>
+                <td>{{ e.superficie }}</td>
+                <td>
+                    <a href="{{ path("app_espaces_modifier", {"id": e.id}) }}" class="btn btn-primary">modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{path("app_espaces_ajouter")}}" class="btn btn-success">Ajouter un espace</a>
 {% endblock %}
